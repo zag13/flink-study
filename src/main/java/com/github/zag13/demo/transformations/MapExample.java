@@ -12,24 +12,26 @@ public class MapExample {
         // 创建 Flink 执行环境
         StreamExecutionEnvironment senv = StreamExecutionEnvironment.getExecutionEnvironment();
 
-
         DataStream<Integer> dataStream = senv.fromElements(1, 2, -3, 0, 5, -9, 8);
 
         // 使用Lambda表达式
-        DataStream<String> lambdaStream = dataStream
-                .map(input -> "lambda input : " + input + ", output : " + (input * 2));
+        DataStream<String> lambdaStream = dataStream.
+                map(input -> "lambda input : " + input + ", output : " + (input * 2));
         lambdaStream.print();
 
-        DataStream<String> functionDataStream = dataStream.map(new DoubleMapFunction());
+        // 自定义MapFunction
+        DataStream<String> functionDataStream = dataStream.
+                map(new DoubleMapFunction());
         functionDataStream.print();
 
         // 匿名类
-        DataStream<String> anonymousDataStream = dataStream.map(new MapFunction<Integer, String>() {
-            @Override
-            public String map(Integer input) throws Exception {
-                return "anonymous function input : " + input + ", output : " + (input * 2);
-            }
-        });
+        DataStream<String> anonymousDataStream = dataStream.
+                map(new MapFunction<Integer, String>() {
+                    @Override
+                    public String map(Integer input) throws Exception {
+                        return "anonymous function input : " + input + ", output : " + (input * 2);
+                    }
+                });
         anonymousDataStream.print();
 
         senv.execute("basic map transformation");

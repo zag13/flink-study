@@ -21,8 +21,10 @@ public class AggregationExample {
         //  (1,0,6)
         //  (1,1,6)
         //  (1,1,6)
-        DataStream<Tuple3<Integer, Integer, Integer>> sumStream = tupleStream.keyBy(0).sum(1);
-        sumStream.print();
+        DataStream<Tuple3<Integer, Integer, Integer>> sumStream = tupleStream.
+                keyBy(tuple -> tuple.f0).
+                sum(1);
+//        sumStream.print();
 
         // 按第一个字段分组，对第三个字段求最大值，使用max()，打印出来的结果如下：
         //  (0,0,0)
@@ -31,8 +33,10 @@ public class AggregationExample {
         //  (1,0,6)
         //  (1,0,7)
         //  (1,0,8)
-        DataStream<Tuple3<Integer, Integer, Integer>> maxStream = tupleStream.keyBy(0).max(2);
-        maxStream.print();
+        DataStream<Tuple3<Integer, Integer, Integer>> maxStream = tupleStream.
+                keyBy(tuple -> tuple.f0).
+                max(2);
+//        maxStream.print();
 
         // 按第一个字段分组，对第三个字段求最大值，使用maxBy()，打印出来的结果如下：
         //  (0,0,0)
@@ -41,7 +45,9 @@ public class AggregationExample {
         //  (1,0,6)
         //  (1,1,7)
         //  (1,0,8)
-        DataStream<Tuple3<Integer, Integer, Integer>> maxByStream = tupleStream.keyBy(0).maxBy(2);
+        DataStream<Tuple3<Integer, Integer, Integer>> maxByStream = tupleStream.
+                keyBy(tuple -> tuple.f0).
+                maxBy(2);
         maxByStream.print();
 
         senv.execute("basic aggregation transformation");

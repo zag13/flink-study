@@ -19,8 +19,7 @@ public class ReduceExample {
         DataStream<Score> sumReduceFunctionStream = dataStream
                 .keyBy(item -> item.name)
                 .reduce(new MyReduceFunction());
-
-        sumReduceFunctionStream.print();
+//        sumReduceFunctionStream.print();
 
         // 使用 Lambda 表达式
         DataStream<Score> sumLambdaStream = dataStream

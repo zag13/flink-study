@@ -18,6 +18,8 @@ public class PartitionCustomExample {
         // 获取当前执行环境的默认并行度
         int defaultParalleism = senv.getParallelism();
 
+        System.out.println("defaultParalleism: " + defaultParalleism);
+
         // 设置所有算子的并行度为4，表示所有算子的并行执行的算子子任务数为4
         senv.setParallelism(4);
 
@@ -27,8 +29,8 @@ public class PartitionCustomExample {
                 Tuple2.of(5, "bcd"), Tuple2.of(6, "666"));
 
         // 对(Integer, String)中的第二个字段String使用 MyPartitioner 中的重分布逻辑
-        DataStream<Tuple2<Integer, String>> partitioned = dataStream.partitionCustom(new MyPartitioner(), 1);
-
+        DataStream<Tuple2<Integer, String>> partitioned = dataStream.
+                partitionCustom(new MyPartitioner(), tuple2 -> tuple2.f1);
         partitioned.print();
 
         senv.execute("partition custom transformation");
@@ -37,7 +39,7 @@ public class PartitionCustomExample {
     /**
      * Partitioner<T> 其中泛型T为指定的字段类型
      * 重写partiton函数，并根据T字段对数据流中的所有元素进行数据重分配
-     * */
+     */
     public static class MyPartitioner implements Partitioner<String> {
 
         private Random rand = new Random();
@@ -47,7 +49,7 @@ public class PartitionCustomExample {
          * key 泛型T 即根据哪个字段进行数据重分配，本例中是Tuple2(Integer, String)中的String
          * numPartitons 为当前有多少个并行实例
          * 函数返回值是一个int 该元素将被发送给下游第几个实例
-         * */
+         */
         @Override
         public int partition(String key, int numPartitions) {
             int randomNum = rand.nextInt(numPartitions / 2);
