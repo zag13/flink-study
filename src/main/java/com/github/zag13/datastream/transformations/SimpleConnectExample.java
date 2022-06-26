@@ -1,4 +1,4 @@
-package com.github.zag13.demo.transformations;
+package com.github.zag13.datastream.transformations;
 
 import org.apache.flink.streaming.api.datastream.ConnectedStreams;
 import org.apache.flink.streaming.api.datastream.DataStream;
