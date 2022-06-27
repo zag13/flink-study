@@ -1,4 +1,4 @@
-package com.github.zag13.util.event.model;
+package com.github.zag13.event.model;
 
 /**
  * POJO UserBehavior

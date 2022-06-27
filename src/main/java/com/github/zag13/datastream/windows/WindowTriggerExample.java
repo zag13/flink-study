@@ -1,7 +1,7 @@
 package com.github.zag13.datastream.windows;
 
-import com.github.zag13.util.stock.StockPrice;
-import com.github.zag13.util.stock.StockSource;
+import com.github.zag13.stock.model.StockPrice;
+import com.github.zag13.stock.source.StockSource;
 import org.apache.flink.api.common.state.ValueState;
 import org.apache.flink.api.common.state.ValueStateDescriptor;
 import org.apache.flink.api.common.typeinfo.Types;

@@ -1,7 +1,7 @@
 package com.github.zag13.datastream.eventtime;
 
-import com.github.zag13.util.event.model.Event;
-import com.github.zag13.util.event.source.FileSource;
+import com.github.zag13.event.model.Event;
+import com.github.zag13.event.source.FileSource;
 import org.apache.flink.api.common.eventtime.WatermarkOutput;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.streaming.api.datastream.DataStream;

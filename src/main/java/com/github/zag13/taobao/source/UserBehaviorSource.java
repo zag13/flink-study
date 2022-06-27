@@ -1,5 +1,6 @@
-package com.github.zag13.util.taobao;
+package com.github.zag13.taobao.source;
 
+import com.github.zag13.taobao.model.UserBehavior;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 
 import java.io.BufferedReader;

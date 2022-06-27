@@ -1,5 +1,6 @@
-package com.github.zag13.util.stock;
+package com.github.zag13.stock.source;
 
+import com.github.zag13.stock.model.StockPrice;
 import org.apache.flink.api.common.state.ListState;
 import org.apache.flink.api.common.state.ListStateDescriptor;
 import org.apache.flink.api.common.typeinfo.Types;

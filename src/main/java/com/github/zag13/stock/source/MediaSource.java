@@ -1,5 +1,6 @@
-package com.github.zag13.util.stock;
+package com.github.zag13.stock.source;
 
+import com.github.zag13.stock.model.Media;
 import org.apache.flink.streaming.api.functions.source.RichSourceFunction;
 
 import java.util.Arrays;

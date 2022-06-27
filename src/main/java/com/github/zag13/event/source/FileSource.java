@@ -1,6 +1,6 @@
-package com.github.zag13.util.event.source;
+package com.github.zag13.event.source;
 
-import com.github.zag13.util.event.model.Event;
+import com.github.zag13.event.model.Event;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 
 import java.io.BufferedReader;

@@ -1,4 +1,4 @@
-package com.github.zag13.util.taobao;
+package com.github.zag13.taobao.model;
 
 /**
  * 行为模式

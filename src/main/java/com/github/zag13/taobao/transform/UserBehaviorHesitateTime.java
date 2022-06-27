@@ -1,7 +1,7 @@
-package com.github.zag13.taobao;
+package com.github.zag13.taobao.transform;
 
-import com.github.zag13.util.taobao.UserBehaviorSource;
-import com.github.zag13.util.taobao.UserBehavior;
+import com.github.zag13.taobao.source.UserBehaviorSource;
+import com.github.zag13.taobao.model.UserBehavior;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.RichFlatMapFunction;
 import org.apache.flink.api.common.state.MapState;

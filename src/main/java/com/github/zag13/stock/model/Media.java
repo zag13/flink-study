@@ -1,4 +1,4 @@
-package com.github.zag13.util.stock;
+package com.github.zag13.stock.model;
 
 public class Media {
     public String symbol;
