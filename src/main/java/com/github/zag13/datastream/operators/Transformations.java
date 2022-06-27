@@ -1,19 +1,11 @@
 package com.github.zag13.datastream.operators;
 
-import com.github.zag13.datastream.util.stock.StockPrice;
-import com.github.zag13.datastream.util.stock.StockSource;
 import com.github.zag13.util.event.model.Event;
+import com.github.zag13.util.event.source.FileSource;
 import org.apache.flink.api.common.functions.*;
-import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.functions.windowing.AllWindowFunction;
-import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
-import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
-import org.apache.flink.streaming.api.windowing.time.Time;
-import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
-import org.apache.flink.streaming.api.windowing.windows.Window;
 import org.apache.flink.util.Collector;
 
 public class Transformations {
@@ -24,8 +16,8 @@ public class Transformations {
 
         env.setParallelism(1);
 
-//        DataStream<Event> event = env.addSource(new FileSource("event/event.txt"));
-//        event.print();
+        DataStream<Event> event = env.addSource(new FileSource("event/event.txt"));
+        event.print();
 
 //        DataStream<String> mapT = event.map(input -> "event time: " + input.getEventTime() + ", event type: " + input.getEventType());
 //        mapT.print();
@@ -47,7 +39,7 @@ public class Transformations {
 //                reduce((Event a, Event b) -> a.getEventTime() >= b.getEventTime() ? a : b);
 //        reduceT.print();
 
-        DataStream<StockPrice> stockPrice = env.addSource(new StockSource("stock/stock-test.csv"));
+//        DataStream<StockPrice> stockPrice = env.addSource(new StockSource("stock/stock-test.csv"));
 
 //        DataStream<StockPrice> windowT = stockPrice.keyBy(s -> s.symbol).
 //                window(TumblingProcessingTimeWindows.of(Time.seconds(5))).
@@ -90,6 +82,51 @@ public class Transformations {
 //                window(TumblingProcessingTimeWindows.of(Time.seconds(5))).
 //                reduce((s1, s2) -> StockPrice.of(s1.symbol, s2.price, s2.ts, s1.volume + s2.volume));
 //        windowReduceT.print();
+
+//        DataStream<StockPrice> unionT = stockPrice.union(stockPrice);
+//        unionT.print();
+
+//        DataStream<StockPrice> windowJoinT = stockPrice.
+//                join(stockPrice).
+//                where(s -> s.symbol).equalTo(s -> s.symbol).
+//                window(TumblingProcessingTimeWindows.of(Time.seconds(5))).
+//                apply(new JoinFunction<StockPrice, StockPrice, StockPrice>() {
+//                    @Override
+//                    public StockPrice join(StockPrice stockPrice, StockPrice stockPrice2) throws Exception {
+//                        return stockPrice;
+//                    }
+//                });
+//        windowJoinT.print();
+
+        // ??? intervalJoin
+//        DataStream<StockPrice> intervalJoinT = stockPrice.
+//                keyBy(s -> s.symbol).
+//                intervalJoin(stockPrice.keyBy(s -> s.symbol)).
+//                between(Time.seconds(5), Time.seconds(10)).
+//                process();
+//        intervalJoinT.print();
+
+        // ??? windowCoGroup
+//        DataStream<StockPrice> windowCoGroupT = stockPrice.
+//                coGroup(stockPrice).
+//                where(s -> s.symbol).equalTo(s -> s.symbol).
+//                window(TumblingProcessingTimeWindows.of(Time.seconds(5))).
+//                apply(new CoGroupFunction<StockPrice, StockPrice, StockPrice>() {
+//                    @Override
+//                    public void coGroup(Iterable<StockPrice> iterable, Iterable<StockPrice> iterable2, Collector<StockPrice> collector) throws Exception {
+//                        for (StockPrice s : iterable) {
+//                            collector.collect(s);
+//                        }
+//                        for (StockPrice s : iterable2) {
+//                            collector.collect(s);
+//                        }
+//                    }
+//                });
+//        windowCoGroupT.print();
+
+        // Connect、CoMap、CoFlatMap
+
+        // Iterate
 
         env.execute("Transformations Example");
     }
@@ -142,6 +179,7 @@ public class Transformations {
     // ??? 实现 AllWindowApplyFunction
     // ??? 实现 WindowReduceFunction
 
+    private static class todo {}
 
     // ------------------------   Rich...相关函数可以传参进来   ------------------------
 
