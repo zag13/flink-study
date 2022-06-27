@@ -1,4 +1,4 @@
-package com.github.zag13.datastream.timeAndWindow;
+package com.github.zag13.datastream.windows;
 
 import org.apache.flink.api.common.functions.CoGroupFunction;
 import org.apache.flink.api.common.typeinfo.Types;
@@ -19,20 +19,20 @@ public class CoGroupExample {
         DataStream<String> socketSource2 = env.socketTextStream("localhost", 9001);
 
         DataStream<Tuple2<String, Integer>> input1 = socketSource1.map(
-                line -> {
-                    String[] arr = line.split(" ");
-                    String id = arr[0];
-                    int t = Integer.parseInt(arr[1]);
-                    return Tuple2.of(id, t);
-                })
+                        line -> {
+                            String[] arr = line.split(" ");
+                            String id = arr[0];
+                            int t = Integer.parseInt(arr[1]);
+                            return Tuple2.of(id, t);
+                        })
                 .returns(Types.TUPLE(Types.STRING, Types.INT));
         DataStream<Tuple2<String, Integer>> input2 = socketSource2.map(
-                line -> {
-                    String[] arr = line.split(" ");
-                    String id = arr[0];
-                    int t = Integer.parseInt(arr[1]);
-                    return Tuple2.of(id, t);
-                })
+                        line -> {
+                            String[] arr = line.split(" ");
+                            String id = arr[0];
+                            int t = Integer.parseInt(arr[1]);
+                            return Tuple2.of(id, t);
+                        })
                 .returns(Types.TUPLE(Types.STRING, Types.INT));
 
         DataStream<String> coGroupResult = input1.coGroup(input2)

@@ -1,7 +1,7 @@
-package com.github.zag13.datastream.timeAndWindow;
+package com.github.zag13.datastream.windows;
 
-import com.github.zag13.datastream.util.stock.StockPrice;
-import com.github.zag13.datastream.util.stock.StockSource;
+import com.github.zag13.util.stock.StockPrice;
+import com.github.zag13.util.stock.StockSource;
 import org.apache.flink.api.common.functions.AggregateFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.tuple.Tuple3;

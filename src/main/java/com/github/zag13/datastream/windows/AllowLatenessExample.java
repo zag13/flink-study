@@ -1,4 +1,4 @@
-package com.github.zag13.datastream.timeAndWindow;
+package com.github.zag13.datastream.windows;
 
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.state.ValueState;

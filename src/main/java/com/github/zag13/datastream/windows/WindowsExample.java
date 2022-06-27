@@ -1,14 +1,14 @@
-package com.github.zag13.datastream.timeAndWindow;
+package com.github.zag13.datastream.windows;
 
-import com.github.zag13.datastream.util.stock.StockPrice;
-import com.github.zag13.datastream.util.stock.StockSource;
+import com.github.zag13.util.stock.StockPrice;
+import com.github.zag13.util.stock.StockSource;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 
-public class WindowExample {
+public class WindowsExample {
 
     public static void main(String[] args) throws Exception {
 
