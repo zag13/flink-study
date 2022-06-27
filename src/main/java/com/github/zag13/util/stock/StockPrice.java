@@ -32,9 +32,9 @@ public class StockPrice {
 
     @Override
     public String toString() {
-        return "(" + this.symbol + "," +
-                this.price + "," + this.ts +
-                "," + this.volume + "," +
+        return "(" + this.symbol + ", " +
+                this.price + ", " + this.ts +
+                ", " + this.volume + ", " +
                 this.mediaStatus + ")";
     }
 }
