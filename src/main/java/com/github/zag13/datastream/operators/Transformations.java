@@ -16,8 +16,8 @@ public class Transformations {
 
         env.setParallelism(1);
 
-        DataStream<Event> event = env.addSource(new FileSource("event/event.txt"));
-        event.print();
+//        DataStream<Event> event = env.addSource(new FileSource("event/event-test.txt"));
+//        event.print();
 
 //        DataStream<String> mapT = event.map(input -> "event time: " + input.getEventTime() + ", event type: " + input.getEventType());
 //        mapT.print();

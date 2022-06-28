@@ -21,7 +21,7 @@ public class Watermark {
 
         System.out.println("defaultAutoWatermarkInterval: "+env.getConfig().getAutoWatermarkInterval());
 
-        DataStream<Event> event = env.addSource(new FileSource("event/event.txt"))
+        /*DataStream<Event> event = env.addSource(new FileSource("event/event-test.txt"))
                 .filter(i -> i.getEventType().equals("event_update"))
                 .assignTimestampsAndWatermarks(
                         WatermarkStrategy.<Event>forBoundedOutOfOrderness(Duration.ofSeconds(5))
@@ -31,7 +31,7 @@ public class Watermark {
                 .keyBy(Event::getEventType)
                 .window(TumblingEventTimeWindows.of(Time.seconds(5)))
                 .reduce((Event a, Event b) -> a.getEventTime() <= b.getEventTime() ? a : b);
-        event.print();
+        event.print();*/
 
         env.execute("Watermark Example");
     }
