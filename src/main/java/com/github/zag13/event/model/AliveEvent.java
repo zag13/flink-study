@@ -34,8 +34,4 @@ public class AliveEvent extends BaseEvent {
         return new AliveEvent(eventTime, eventType, tag1, tag2, tag3, tag4, uniqueId, userId, serverId, roleId, roleName, roleLevel, ip);
     }
 
-    @Override
-    public String toString() {
-        return this.eventString;
-    }
 }

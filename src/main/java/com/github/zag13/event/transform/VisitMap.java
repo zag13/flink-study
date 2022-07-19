@@ -18,7 +18,9 @@ public class VisitMap implements MapFunction<BaseEvent, VisitEvent> {
         String androidId = eventArray[8];
         String clientIp = eventArray[9];
         String ip = eventArray[10];
-        return VisitEvent.of(baseEvent.getEventTime(), baseEvent.getEventType(), tag1, tag2, deviceId, visitType, visitData, oaid, androidId, clientIp, ip);
+        VisitEvent a = VisitEvent.of(baseEvent.getEventTime(), baseEvent.getEventType(), tag1, tag2, deviceId, visitType, visitData, oaid, androidId, clientIp, ip);
+        System.out.println(a);
+        return a;
     }
 
 }

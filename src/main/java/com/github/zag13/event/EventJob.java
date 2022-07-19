@@ -25,8 +25,8 @@ public class EventJob {
         DataStream<VisitEvent> visit = baseEvent.filter(event->event.getEventType().equals("visit"))
                 .map(new VisitMap());
 
-        alive.print();
-        visit.print();
+//        alive.print();
+//        visit.print();
 
         env.execute("EventJob: event");
     }
